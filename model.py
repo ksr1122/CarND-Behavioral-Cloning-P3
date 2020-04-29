@@ -104,3 +104,25 @@ def train():
 
     model.save('model.h5')
     return history_object
+
+
+import matplotlib.pyplot as plt
+
+def visualize(history_object):
+    ### print the keys contained in the history object
+    print(history_object.history.keys())
+
+    ### plot the training and validation loss for each epoch
+    plt.plot(history_object.history['loss'])
+    plt.plot(history_object.history['val_loss'])
+    plt.title('model mean squared error loss')
+    plt.ylabel('mean squared error loss')
+    plt.xlabel('epoch')
+    plt.legend(['training set', 'validation set'], loc='upper right')
+#     plt.show()
+    plt.savefig('./examples/visualization.png')
+
+
+if __name__ == '__main__':
+    history_object = train()
+    visualize(history_object)
